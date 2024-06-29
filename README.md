@@ -1,5 +1,3 @@
-Sure! Here's a sample `README.md` file for your motorcycle selling website project using the MERN stack:
-
 ````markdown
 # Motorcycle Sales Platform
 
