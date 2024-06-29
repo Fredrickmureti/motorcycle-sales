@@ -1,4 +1,5 @@
-````markdown
+
+```markdown
 # Motorcycle Sales Platform
 
 A comprehensive platform for selling motorcycles, built using the MERN stack (MongoDB, Express, React, Node.js). This project allows motorcycle owners to upload motorcycles with images and descriptions, and potential buyers to browse, inquire, add to favorites, and create accounts to receive updates.
@@ -54,16 +55,13 @@ A comprehensive platform for selling motorcycles, built using the MERN stack (Mo
    git clone https://github.com/yourusername/motorcycle-sales.git
    cd motorcycle-sales/backend
    ```
-````
 
 2. Install backend dependencies:
-
    ```bash
    npm install
    ```
 
 3. Create a `.env` file in the `backend` directory and add the following variables:
-
    ```
    PORT=5000
    MONGO_URI=your_mongodb_connection_string
@@ -81,19 +79,16 @@ A comprehensive platform for selling motorcycles, built using the MERN stack (Mo
 ### Frontend Setup
 
 1. Navigate to the `frontend` directory:
-
    ```bash
    cd ../frontend
    ```
 
 2. Install frontend dependencies:
-
    ```bash
    npm install
    ```
 
 3. Create a `.env` file in the `frontend` directory and add the following variable:
-
    ```
    REACT_APP_API_URL=http://localhost:5000
    ```
@@ -136,17 +131,10 @@ Contributions are welcome! Please fork the repository and create a pull request.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
 Fredrick Mureti - frredrickmureti612@gmail.com
 
-Project Link: [https://github.com/yourusername/motorcycle-sales](https://github.com/yourusername/motorcycle-sales)
-
-```
-
-Feel free to adjust any sections as necessary. If you have a specific GitHub username or project link, you can replace `yourusername` and the project link with the appropriate values.
+Project Link: [https://github.com/Fredrickmureti/motorcycle-sales](https://github.com/Fredrickmureti/motorcycle-sales)
 ```
