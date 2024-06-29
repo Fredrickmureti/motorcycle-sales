@@ -8,8 +8,13 @@ A comprehensive platform for selling motorcycles, built using the MERN stack (Mo
 - [Features](#features)
 - [Technologies](#technologies)
 - [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
+  - [Authentication](#authentication)
+  - [Motorcycles](#motorcycles)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -23,7 +28,7 @@ A comprehensive platform for selling motorcycles, built using the MERN stack (Mo
 - Real-time Notifications
 - Secure Routes and JWT Authentication
 
-# Technologies
+## Technologies
 
 - MongoDB
 - Express.js
