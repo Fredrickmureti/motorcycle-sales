@@ -1,0 +1,119 @@
+# Node modules
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+backend/.env
+backend/.env.local
+backend/.env.development.local
+backend/.env.test.local
+backend/.env.production.local
+
+# Vite
+.vite
+dist/
+out/
+build/
+
+# Static files
+public/static/
+public/assets/
+frontend/public/static/
+frontend/public/assets/
+
+# Build output
+dist/
+frontend/dist/
+backend/dist/
+
+# Coverage directory used by tools like istanbul
+coverage/
+frontend/coverage/
+backend/coverage/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# IDE specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Microservices
+**/Dockerfile
+**/docker-compose.yml
+docker-compose.override.yml
+
+# Miscellaneous
+.DS_Store
+*.tgz
+*.swp
+*.bak
+*.tmp
+*.temp
+*.tsbuildinfo
+
+# TypeScript
+*.tsbuildinfo
+frontend/.tsbuildinfo
+backend/.tsbuildinfo
+
+# Parcel cache
+.cache/
+frontend/.cache/
+backend/.cache/
+
+# Next.js
+.next/
+out/
+
+# Storybook
+.storybook/
+out/
+
+# Firebase
+.firebase/
+firestore.indexes.json
+firestore.rules
+storage.rules
+
+# GitHub Actions
+.github/
+
+# Temporary files
+tmp/
+temp/
