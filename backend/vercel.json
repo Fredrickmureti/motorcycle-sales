@@ -8,10 +8,6 @@
   ],
   "routes": [
     {
-      "src": "*.js",
-      "use": "@vercel/node"
-    },
-    {
       "src": "/(.*)",
       "dest": "/"
     }
