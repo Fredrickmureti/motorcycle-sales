@@ -26,7 +26,7 @@ const MotorcycleDetail = () => {
 
     if (!motorcycle) return <div>Loading...</div>;
 
-    const shareUrl = `http://localhost:3000/motorcycles/${id}`;
+    const shareUrl = `https://deploy-mern-api-nine.vercel.app/motorcycles/${id}`;
 
     const renderStars = (score) => {
         const stars = [];

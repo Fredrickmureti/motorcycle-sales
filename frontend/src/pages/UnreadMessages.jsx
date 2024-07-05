@@ -10,7 +10,7 @@ const UnreadMessages = () => {
 
     useEffect(() => {
         if (user?.role === 'admin') {
-            axios.get('http://localhost:3000/chat/messages/unread')
+            axios.get('https://deploy-mern-api-nine.vercel.app/chat/messages/unread')
                 .then(response => setUnreadMessages(response.data.unreadMessages))
                 .catch(error => console.error('Error fetching unread messages:', error));
         }
@@ -20,7 +20,7 @@ const UnreadMessages = () => {
         e.preventDefault();
         if (reply.trim() && selectedUser) {
             try {
-                await axios.post('http://localhost:3000/chat/reply', {
+                await axios.post('https://deploy-mern-api-nine.vercel.app/chat/reply', {
                     messageId: selectedUser._id,
                     reply
                 });

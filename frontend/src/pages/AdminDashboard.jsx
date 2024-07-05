@@ -18,15 +18,15 @@ const AdminDashboard = () => {
 
     useEffect(() => {
         if (user?.role === 'admin') {
-            axios.get('http://localhost:3000/chat/messages')
+            axios.get('https://deploy-mern-api-nine.vercel.app/chat/messages')
                 .then(response => setMessages(response.data.messages))
                 .catch(error => console.error('Error fetching messages:', error));
 
-            axios.get('http://localhost:3000/chat/messages/unread')
+            axios.get('https://deploy-mern-api-nine.vercel.app/chat/messages/unread')
                 .then(response => setUnreadMessages(response.data.unreadMessages))
                 .catch(error => console.error('Error fetching unread messages:', error));
 
-            axios.get('http://localhost:3000/chat/online-status')
+            axios.get('https://deploy-mern-api-nine.vercel.app/chat/online-status')
                 .then(response => setOnlineUsers(response.data.users))
                 .catch(error => console.error('Error fetching online users:', error));
 
@@ -44,7 +44,7 @@ const AdminDashboard = () => {
         e.preventDefault();
         if (reply.trim() && selectedUser) {
             try {
-                await axios.post('http://localhost:3000/chat/reply', {
+                await axios.post('https://deploy-mern-api-nine.vercel.app/chat/reply', {
                     messageId: selectedUser._id,
                     reply
                 });

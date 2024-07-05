@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-const API_URL = 'https://motorcycle-sales-api.vercel.app';
+// api utl localhost port 3000
+const API_URL = 'https://deploy-mern-api-nine.vercel.app/';
 
 // Fetch all motorcycles
 export const fetchMotorcycles = async () => {

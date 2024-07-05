@@ -27,9 +27,8 @@ const Footer = () => {
               <li><a href="/login">Login</a></li>
               <li><a href="/register">Register</a></li>
               <li><a href="/profile">Profile</a></li>
-              <li><a href="/admins">Admins</a></li>
+
               <li><a href="/total-users">Total Users</a></li>
-              <li><a href="/admin-dashboard">Admin Dashboard</a></li>
             </ul>
           </div>
         </div>
