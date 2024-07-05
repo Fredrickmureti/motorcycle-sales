@@ -8,7 +8,6 @@ const authRoutes = require('./routes/auth');
 const chatRoutes = require('./routes/chat');
 
 const app = express();
-//const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,7 +26,10 @@ mongoose.connect(process.env.MONGO_URL, {
 })
   .then(() => {
     console.log('Connected to MongoDB');
+    // No need to specify a port, Vercel handles it
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
+
+module.exports = app; // Ensure this line is included for Vercel
