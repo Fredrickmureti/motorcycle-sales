@@ -17,6 +17,10 @@ app.use('/motorcycles', motorcycleRoutes);
 app.use('/auth', authRoutes);
 app.use('/chat', chatRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Motorcycle Sales API!');
+});
+
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
