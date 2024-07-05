@@ -17,6 +17,10 @@ app.use('/motorcycles', motorcycleRoutes);
 app.use('/auth', authRoutes);
 app.use('/chat', chatRoutes);
 
+app.get('/https://deploy-mern-api-nine.vercel.app', (req, res) => {
+  res.send('Hello World!');
+})
+
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
