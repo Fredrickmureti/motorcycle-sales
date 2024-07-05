@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const chatRoutes = require('./routes/chat');
 
 const app = express();
+//const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -16,20 +17,16 @@ app.use('/motorcycles', motorcycleRoutes);
 app.use('/auth', authRoutes);
 app.use('/chat', chatRoutes);
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the Motorcycle Sales API!');
-});
-
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
   .then(() => {
-    console.log('Connected to MongoDB');
-    // No need to specify a port, Vercel handles it
+    /* console.log('Connected to MongoDB');
+     app.listen(PORT, () => {
+       console.log(`Server listening on port ${PORT}`);
+     });*/
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
-
-module.exports = app; // Ensure this line is included for Vercel
