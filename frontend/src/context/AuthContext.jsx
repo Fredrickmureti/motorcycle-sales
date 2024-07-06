@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'https://deploy-mern-api-nine.vercel.app/';
+const API_URL = 'https://backend-api-pi-black.vercel.app';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

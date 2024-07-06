@@ -5,7 +5,7 @@ import { faCommentDots, faPaperPlane, faTimes, faArrowRight, faUser, faEnvelope,
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
-const socket = io('https://deploy-mern-api-nine.vercel.app/'); // Replace with your server URL
+const socket = io('https://backend-api-pi-black.vercel.app'); // Replace with your server URL
 
 const Chat = () => {
     const { user } = useAuth();
@@ -30,7 +30,7 @@ const Chat = () => {
             }
         });
 
-        axios.get('https://deploy-mern-api-nine.vercel.app/chat/availability')
+        axios.get('https://backend-api-pi-black.vercel.app/chat/availability')
             .then(response => setAgentsAvailable(response.data.available))
             .catch(error => console.error('Error fetching agent availability:', error));
 
@@ -54,7 +54,7 @@ const Chat = () => {
         e.preventDefault();
         if (name.trim() && email.trim()) {
             if (!agentsAvailable) {
-                axios.post('https://deploy-mern-api-nine.vercel.app//chat/message', { name, email, message: 'User initiated chat' })
+                axios.post('https://backend-api-pi-black.vercel.app/chat/message', { name, email, message: 'User initiated chat' })
                     .then(() => {
                         alert('Message sent! Our agents will get back to you via email.');
                     })
