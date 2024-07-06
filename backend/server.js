@@ -10,14 +10,19 @@ const chatRoutes = require('./routes/chat');
 const app = express();
 //const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://deploy-mern-frontend-psi.vercel.app',
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use('/motorcycles', motorcycleRoutes);
 app.use('/auth', authRoutes);
 app.use('/chat', chatRoutes);
 
-app.get('/https://deploy-mern-api-nine.vercel.app', (req, res) => {
+app.get('/https://backend-motorcycle-api.vercel.app', (req, res) => {
   res.send('Hello World!');
 })
 
