@@ -20,7 +20,13 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Motorcycle Sales API!');
 });
 
-mongoose.connect(process.env.MONGO_URL, {
+const mongoUrl = process.env.MONGO_URL;
+if (!mongoUrl) {
+  console.error('MONGO_URL environment variable is not set');
+  process.exit(1);
+}
+
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
