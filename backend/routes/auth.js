@@ -7,7 +7,10 @@ const multer = require('multer');
 const { uploadImage } = require('../utils/cloudinary');
 
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' });
+
+// Configure Multer to use memory storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // Register user
 router.post('/register', async (req, res) => {
