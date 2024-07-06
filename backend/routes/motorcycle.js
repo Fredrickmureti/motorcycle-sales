@@ -5,7 +5,10 @@ const Motorcycle = require('../models/Motorcycle');
 const { auth, admin } = require('../middleware/auth');
 
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' });
+
+// Configure Multer to use memory storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // Get all motorcycles
 router.get('/', async (req, res) => {
