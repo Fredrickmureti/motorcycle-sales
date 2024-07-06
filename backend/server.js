@@ -22,8 +22,8 @@ app.use('/motorcycles', motorcycleRoutes);
 app.use('/auth', authRoutes);
 app.use('/chat', chatRoutes);
 
-app.get('/https://backend-motorcycle-api.vercel.app', (req, res) => {
-  res.send('Hello World!');
+app.get('/', (req, res) => {
+  res.send('Welcome to the Motorcycle Sales API!');
 })
 
 mongoose.connect(process.env.MONGO_URL, {
@@ -39,3 +39,6 @@ mongoose.connect(process.env.MONGO_URL, {
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
+
+
+module.exports = app;
