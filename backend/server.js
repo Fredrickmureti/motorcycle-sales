@@ -8,7 +8,11 @@ const authRoutes = require('./routes/auth');
 const chatRoutes = require('./routes/chat');
 
 const app = express();
+corsOptions = {
+  origin: 'https://deploy-mern-frontend-fs4nvhnkf-fredrick-lugards-projects.vercel.app/login',
+  optionsSuccessStatus: 200,
 
+}
 app.use(cors());
 app.use(bodyParser.json());
 
