@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-// API URL
+// api utl localhost port 3000
 const API_URL = 'https://backend-api-pi-black.vercel.app';
 
 // Fetch all motorcycles
@@ -65,14 +64,15 @@ export const deleteMotorcycle = async (id) => {
 // Fetch all users
 export const fetchTotalUsers = async () => {
     try {
-        const response = await axios.get(`${API_URL}/auth/users`);
-        return response.data;
+      const response = await axios.get(`${API_URL}/auth/users`);
+      return response.data;
     } catch (error) {
-        console.error('Error fetching total users:', error);
-        throw error;
+      console.error('Error fetching total users:', error);
+      throw error;
     }
-};
+  };
 
+  
 // Fetch all admins
 export const fetchAdmins = async () => {
     try {
@@ -105,6 +105,10 @@ export const removeAdminRole = async (id) => {
         throw error;
     }
 };
+
+
+
+
 
 // Update user profile
 export const updateUserProfile = async (id, formData) => {
