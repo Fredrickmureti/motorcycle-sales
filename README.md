@@ -1,44 +1,63 @@
+Here's a well-structured `README.md` file with a clickable Table of Contents:
 
-```markdown
+````markdown
 # Motorcycle Sales Platform
 
-A comprehensive platform for selling motorcycles, built using the MERN stack (MongoDB, Express, React, Node.js). This project allows motorcycle owners to upload motorcycles with images and descriptions, and potential buyers to browse, inquire, add to favorites, and create accounts to receive updates.
+Welcome to the Motorcycle Sales Platform, a comprehensive solution for buying and selling motorcycles. This platform is built using the MERN stack (MongoDB, Express, React, Node.js) and is designed to provide a seamless experience for both buyers and sellers.
+
+## Live Website
+
+Check out the live website: [Motorcycle Sales Platform](https://your-live-website-url.com)
 
 ## Table of Contents
 
 - [Features](#features)
-- [Technologies](#technologies)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
+  - [Clone the Repository](#clone-the-repository)
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
 - [Usage](#usage)
+  - [Admin Features](#admin-features)
+  - [User Features](#user-features)
 - [API Endpoints](#api-endpoints)
   - [Authentication](#authentication)
   - [Motorcycles](#motorcycles)
+  - [Chat](#chat)
+- [Environment Variables](#environment-variables)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## Features
 
-- User Authentication (Register, Login)
-- Motorcycle Management (Add, View, Inquire)
-- Image Upload using Cloudinary
-- Favorites Management
-- Real-time Notifications
-- Secure Routes and JWT Authentication
+- **User Authentication**: Secure login and registration with JWT authentication.
+- **Admin Dashboard**: Manage users, motorcycles, and view messages.
+- **Motorcycle Listings**: Add, edit, delete, and view motorcycle listings.
+- **Live Chat**: Real-time chat support with agents.
+- **Responsive Design**: Fully responsive design for mobile and desktop devices.
+- **Dark Mode**: Toggle between light and dark mode.
 
-## Technologies
+## Technologies Used
 
-- MongoDB
-- Express.js
-- React.js
-- Node.js
-- Cloudinary
-- JWT (JSON Web Tokens)
+### Frontend:
+
+- React
+- Vite
+- React Router
 - Axios
-- Multer
+- Socket.io-client
+- FontAwesome
+
+### Backend:
+
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Socket.io
+- Cloudinary (for image uploads)
+- JWT (for authentication)
 
 ## Installation
 
@@ -46,95 +65,146 @@ A comprehensive platform for selling motorcycles, built using the MERN stack (Mo
 
 - Node.js
 - MongoDB
-- Cloudinary Account
+- Cloudinary account
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/motorcycle-sales-platform.git
+cd motorcycle-sales-platform
+```
+````
 
 ### Backend Setup
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/motorcycle-sales.git
-   cd motorcycle-sales/backend
-   ```
+Navigate to the backend directory:
 
-2. Install backend dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+cd backend
+```
 
-3. Create a `.env` file in the `backend` directory and add the following variables:
-   ```
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-   CLOUDINARY_API_KEY=your_cloudinary_api_key
-   CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-   ```
+Install dependencies:
 
-4. Start the backend server:
-   ```bash
-   npm start
-   ```
+```bash
+npm install
+```
+
+Create a `.env` file and add the following environment variables:
+
+```plaintext
+MONGO_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
+
+Start the backend server:
+
+```bash
+npm start
+```
 
 ### Frontend Setup
 
-1. Navigate to the `frontend` directory:
-   ```bash
-   cd ../frontend
-   ```
+Navigate to the frontend directory:
 
-2. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+cd ../frontend
+```
 
-3. Create a `.env` file in the `frontend` directory and add the following variable:
-   ```
-   REACT_APP_API_URL=http://localhost:5000
-   ```
+Install dependencies:
 
-4. Start the frontend development server:
-   ```bash
-   npm start
-   ```
+```bash
+npm install
+```
+
+Create a `.env` file and add the following environment variable:
+
+```plaintext
+VITE_API_URL=https://backend-api-pi-black.vercel.app
+```
+
+Start the frontend server:
+
+```bash
+npm run dev
+```
 
 ## Usage
 
-- Register a new user account.
-- Login with your credentials.
-- Add a new motorcycle listing with images and descriptions.
-- Browse motorcycles on the home page.
-- View details of a specific motorcycle.
-- Add motorcycles to your favorites.
-- Receive real-time notifications for new listings.
+### Admin Features
+
+- **Login as Admin**: Use the admin credentials to log in.
+- **Manage Motorcycles**: Add, edit, and delete motorcycle listings.
+- **Manage Users**: View total users and assign/remove admin roles.
+- **View Messages**: View and reply to user messages.
+
+### User Features
+
+- **Register and Login**: Create an account and log in.
+- **View Motorcycles**: Browse and search for motorcycles.
+- **Live Chat**: Chat with agents for support.
 
 ## API Endpoints
 
 ### Authentication
 
-- `POST /auth/register`: Register a new user
-- `POST /auth/login`: Login an existing user
+- `POST /auth/register`: Register a new user.
+- `POST /auth/login`: Login a user.
+- `GET /auth/me`: Get current user details.
 
 ### Motorcycles
 
-- `POST /motorcycles/add`: Add a new motorcycle
-- `GET /motorcycles`: Get all motorcycles
-- `GET /motorcycles/:id`: Get a specific motorcycle by ID
+- `GET /motorcycles`: Get all motorcycles.
+- `GET /motorcycles/:id`: Get a specific motorcycle by ID.
+- `POST /motorcycles/add`: Add a new motorcycle (Admin only).
+- `PUT /motorcycles/edit/:id`: Edit a motorcycle (Admin only).
+- `DELETE /motorcycles/:id`: Delete a motorcycle (Admin only).
+
+### Chat
+
+- `GET /chat/availability`: Check agent availability.
+- `POST /chat/message`: Save a message.
+- `GET /chat/messages`: Get all messages (Admin only).
+- `GET /chat/messages/unread`: Get unread messages (Admin only).
+- `POST /chat/reply`: Reply to a message (Admin only).
+
+## Environment Variables
+
+Ensure you have the following environment variables set up in your `.env` files:
+
+### Backend
+
+```plaintext
+MONGO_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
+
+### Frontend
+
+```plaintext
+VITE_API_URL=https://backend-api-pi-black.vercel.app
+```
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request.
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature-branch`)
+5. Create a new Pull Request
 
+## License
 
-## Contact
+This project is licensed under the MIT License.
 
-Fredrick Mureti - frredrickmureti612@gmail.com
+```
 
-Project Link: [https://github.com/Fredrickmureti/motorcycle-sales](https://github.com/Fredrickmureti/motorcycle-sales)
+This `README.md` provides clear sections and clickable links in the Table of Contents for easy navigation.
 ```
