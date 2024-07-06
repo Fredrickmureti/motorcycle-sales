@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -8,11 +10,14 @@ const authRoutes = require('./routes/auth');
 const chatRoutes = require('./routes/chat');
 
 const app = express();
-corsOptions = {
-  origin: 'https://deploy-mern-frontend-fs4nvhnkf-fredrick-lugards-projects.vercel.app/login',
-  optionsSuccessStatus: 200,
+const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+});
 
-}
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -41,5 +46,17 @@ mongoose.connect(mongoUrl, {
     console.error('Error connecting to MongoDB:', error);
     process.exit(1); // Exit the process with an error code
   });
+
+io.on('connection', (socket) => {
+  console.log('New client connected');
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 module.exports = app;

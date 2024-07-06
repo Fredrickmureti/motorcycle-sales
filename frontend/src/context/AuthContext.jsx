@@ -2,12 +2,12 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'https://backend-api-pi-black.vercel.app';
+const API_URL = 'https://backend-api-pi-black.vercel.app'; // Ensure this is the correct URL
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true); // Add loading state
+    const [loading, setLoading] = useState(true);
     const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
     const navigate = useNavigate();
 
@@ -18,16 +18,16 @@ export const AuthProvider = ({ children }) => {
             axios.get(`${API_URL}/auth/me`)
                 .then((response) => {
                     setUser(response.data);
-                    setLoading(false); // Set loading to false after fetching user data
+                    setLoading(false);
                 })
                 .catch(() => {
                     localStorage.removeItem('token');
                     delete axios.defaults.headers.common['Authorization'];
-                    setLoading(false); // Set loading to false even if there's an error
+                    setLoading(false);
                     navigate('/login');
                 });
         } else {
-            setLoading(false); // Set loading to false if there's no token
+            setLoading(false);
         }
     }, [navigate]);
 
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     if (loading) {
-        return <div>Loading...</div>; // Show loading state while fetching user data
+        return <div>Loading...</div>;
     }
 
     return (
