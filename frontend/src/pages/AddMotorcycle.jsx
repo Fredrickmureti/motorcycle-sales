@@ -46,7 +46,7 @@ const AddMotorcycle = () => {
             navigate('/motorcycles');
         } catch (err) {
             console.error('Error adding motorcycle:', err);
-            setError('Failed to add motorcycle. Please try again.');
+            setError(`Failed to add motorcycle. Error: ${err.message}`);
         }
     };
 
