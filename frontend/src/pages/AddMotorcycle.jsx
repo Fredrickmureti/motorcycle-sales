@@ -17,6 +17,7 @@ const AddMotorcycle = () => {
         sellerContact: '',
         conditionScore: 0
     });
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -45,12 +46,14 @@ const AddMotorcycle = () => {
             navigate('/motorcycles');
         } catch (err) {
             console.error('Error adding motorcycle:', err);
+            setError('Failed to add motorcycle. Please try again.');
         }
     };
 
     return (
         <div className="add-motorcycle">
             <h2>Add New Motorcycle</h2>
+            {error && <div className="error">{error}</div>}
             <form onSubmit={handleSubmit}>
                 {/* Form fields */}
                 <div className="form-group">

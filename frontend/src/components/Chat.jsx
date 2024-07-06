@@ -5,7 +5,10 @@ import { faCommentDots, faPaperPlane, faTimes, faArrowRight, faUser, faEnvelope,
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
-const socket = io('https://backend-api-pi-black.vercel.app'); // Replace with your server URL
+const socket = io('https://backend-api-pi-black.vercel.app', {
+  transports: ['websocket', 'polling'],
+  secure: true
+});
 
 const Chat = () => {
     const { user } = useAuth();
