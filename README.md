@@ -14,7 +14,7 @@ Check out the live website: [Motorcycle Sales Platform](https://your-live-websit
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
-  - [Prerequisites](#prerequisites)
+- [Prerequisites](#prerequisites)
   - [Clone the Repository](#clone-the-repository)
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
