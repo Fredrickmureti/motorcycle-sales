@@ -201,5 +201,5 @@ Contributions are welcome! Please fork the repository and create a pull request 
 5. Create a new Pull Request
 
 ```
-LINK TO THE LIVE DEMO [https://motorcycle-arena.vercel.app](https://motorcycle-arena.vercel.app)   to login as an admin use [doe@gmail.com](doe@gmail.com)
+LINK TO THE LIVE DEMO [https://motorcycle-arena.vercel.app/](https://motorcycle-arena.vercel.app)
 ```
