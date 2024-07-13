@@ -200,11 +200,6 @@ Contributions are welcome! Please fork the repository and create a pull request 
 4. Push to the branch (`git push origin feature-branch`)
 5. Create a new Pull Request
 
-## License
-
-This project is licensed under the MIT License.
-
 ```
-
-This `README.md` provides clear sections and clickable links in the Table of Contents for easy navigation.
+LINK TO THE LIVE DEMO [https://motorcycle-arena.vercel.app](https://motorcycle-arena.vercel.app)   to login as an admin use [doe@gmail.com](doe@gmail.com)
 ```
