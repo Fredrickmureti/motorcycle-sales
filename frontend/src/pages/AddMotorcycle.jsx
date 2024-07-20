@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addMotorcycle } from '../services/api';
+import { toast } from 'react-toastify';
+import Sound from 'react-sound';
 
 const AddMotorcycle = () => {
     const [formData, setFormData] = useState({
@@ -18,6 +20,7 @@ const AddMotorcycle = () => {
         conditionScore: 0
     });
     const [error, setError] = useState(null);
+    const [sound, setSound] = useState(null);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -42,11 +45,18 @@ const AddMotorcycle = () => {
 
         try {
             await addMotorcycle(data);
-            alert('Motorcycle added successfully!');
+            setSound('/audio/success.mp3');
+            toast.success('Motorcycle added successfully!', {
+                position: 'top-right' // Use string value directly
+            });
             navigate('/motorcycles');
         } catch (err) {
             console.error('Error adding motorcycle:', err);
             setError(`Failed to add motorcycle. Error: ${err.message}`);
+            setSound('/audio/error.mp3');
+            toast.error(`Failed to add motorcycle. Error: ${err.message}`, {
+                position: 'top-right' // Use string value directly
+            });
         }
     };
 
@@ -129,6 +139,13 @@ const AddMotorcycle = () => {
                 </div>
                 <button type="submit">Add Motorcycle</button>
             </form>
+            {sound && (
+                <Sound
+                    url={sound}
+                    playStatus={Sound.status.PLAYING}
+                    onFinishedPlaying={() => setSound(null)}
+                />
+            )}
         </div>
     );
 };

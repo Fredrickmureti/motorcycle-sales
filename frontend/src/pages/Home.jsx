@@ -127,11 +127,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <footer className="footer">
-                <div className="container">
-                    <p>© 2024 Motorcycle Sales Platform. All rights reserved.</p>
-                </div>
-            </footer>
         </div>
     );
 };

@@ -17,6 +17,8 @@ import TotalUsers from '../src/pages/TotalUsers';
 import AdminDashboard from '../src/pages/AdminDashboard';
 import UnreadMessages from '../src/pages/UnreadMessages';
 import Chat from '../src/components/Chat';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AppContent = () => {
     const { darkMode } = useAuth();
@@ -50,6 +52,7 @@ const AppContent = () => {
             </div>
             <Footer />
             <Chat />
+            <ToastContainer /> {/* Add ToastContainer here */}
         </div>
     );
 };

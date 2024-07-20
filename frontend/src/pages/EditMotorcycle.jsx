@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchMotorcyclesById, editMotorcycle } from '../services/api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './EditMotorcycle.css'; // Import the CSS file for styling
 
 const EditMotorcycle = () => {
     const { id } = useParams();
@@ -66,15 +69,28 @@ const EditMotorcycle = () => {
         data.append('location', formData.location);
         data.append('availability', formData.availability);
         data.append('conditionScore', formData.conditionScore);
-        selectedImages.forEach((image) => data.append('images', image));
-        if (selectedImages.length === 0) {
+
+        // Append new images if selected, otherwise append existing images
+        if (selectedImages.length > 0) {
+            selectedImages.forEach((image) => data.append('images', image));
+        } else {
             formData.images.forEach((image) => data.append('existingImages', image));
         }
 
         try {
             await editMotorcycle(id, data);
-            alert('Motorcycle updated successfully!');
-            navigate('/motorcycles');
+            toast.success('Motorcycle updated successfully!', {
+                position: 'top-right', // Use string value directly
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(() => {
+                navigate('/motorcycles');
+            }, 3000);
         } catch (err) {
             console.error('Error updating motorcycle:', err);
             setError('Failed to update motorcycle. Please try again.');
@@ -144,16 +160,17 @@ const EditMotorcycle = () => {
                 <div className="form-group">
                     <label>Images:</label>
                     <input type="file" multiple onChange={handleImageChange} accept="image/*" />
-                    {motorcycle.images && (
-                        <div>
-                            {motorcycle.images.map((url, index) => (
-                                <img key={index} src={url} alt={`Motorcycle ${index}`} style={{ maxWidth: '200px', maxHeight: '200px', margin: '10px' }} />
+                    {formData.images && (
+                        <div className="image-preview">
+                            {formData.images.map((url, index) => (
+                                <img key={index} src={url} alt={`Motorcycle ${index}`} />
                             ))}
                         </div>
                     )}
                 </div>
                 <button type="submit">Update Motorcycle</button>
             </form>
+            <ToastContainer />
         </div>
     );
 };

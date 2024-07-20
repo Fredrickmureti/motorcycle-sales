@@ -5,6 +5,9 @@ import { fetchAdmins, fetchTotalUsers } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Sound from 'react-sound';
 
 const AdminDashboard = () => {
     const { user } = useAuth();
@@ -15,6 +18,7 @@ const AdminDashboard = () => {
     const [admins, setAdmins] = useState([]);
     const [totalUsers, setTotalUsers] = useState(0);
     const [onlineUsers, setOnlineUsers] = useState([]);
+    const [sound, setSound] = useState(null);
 
     useEffect(() => {
         if (user?.role === 'admin') {
@@ -48,7 +52,10 @@ const AdminDashboard = () => {
                     messageId: selectedUser._id,
                     reply
                 });
-                alert('Reply sent successfully!');
+                setSound('/audio/success.mp3');
+                toast.success('Reply sent successfully!', {
+                    position: toast.POSITION.TOP_RIGHT
+                });
                 setReply('');
                 setSelectedUser(null);
                 const updatedMessages = messages.map(msg => 
@@ -57,6 +64,10 @@ const AdminDashboard = () => {
                 setMessages(updatedMessages);
             } catch (err) {
                 console.error('Error sending reply:', err);
+                setSound('/audio/error.mp3');
+                toast.error('Failed to send reply.', {
+                    position: toast.POSITION.TOP_RIGHT
+                });
             }
         }
     };
@@ -126,6 +137,14 @@ const AdminDashboard = () => {
                     ))}
                 </ul>
             </div>
+            <ToastContainer />
+            {sound && (
+                <Sound
+                    url={sound}
+                    playStatus={Sound.status.PLAYING}
+                    onFinishedPlaying={() => setSound(null)}
+                />
+            )}
         </div>
     );
 };
