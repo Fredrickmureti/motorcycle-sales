@@ -11,14 +11,14 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section">
             <h3>Contact Information</h3>
-            <p><FontAwesomeIcon icon={faEnvelope} /> Email: fredrickmureti@gmail.com</p>
-            <p><FontAwesomeIcon icon={faPhone} /> Contact: 0797504827</p>
-            <p><FontAwesomeIcon icon={faMapMarkerAlt} /> Location: Nairobi</p>
+            <p><FontAwesomeIcon icon={faEnvelope} /> <a href="mailto:fredrickmureti@gmail.com">fredrickmureti@gmail.com</a></p>
+            <p><FontAwesomeIcon icon={faPhone} /> <a href="tel:+254797504827">0797504827</a></p>
+            <p><FontAwesomeIcon icon={faMapMarkerAlt} /> Nairobi, Kenya</p>
           </div>
           <div className="footer-section">
             <h3>Social Media</h3>
-            <p><FontAwesomeIcon icon={faTwitter} /> Twitter: <a href="https://twitter.com/devFredrickmureti" target="_blank" rel="noopener noreferrer">@devFredrickmureti</a></p>
-            <p><FontAwesomeIcon icon={faInstagram} /> Instagram: <a href="https://instagram.com/devFredrickmureti" target="_blank" rel="noopener noreferrer">@devFredrickmureti</a></p>
+            <p><FontAwesomeIcon icon={faTwitter} /> <a href="https://twitter.com/devFredrickmureti" target="_blank" rel="noopener noreferrer">@devFredrickmureti</a></p>
+            <p><FontAwesomeIcon icon={faInstagram} /> <a href="https://instagram.com/devFredrickmureti" target="_blank" rel="noopener noreferrer">@devFredrickmureti</a></p>
           </div>
           <div className="footer-section">
             <h3>Quick Links</h3>
@@ -27,9 +27,6 @@ const Footer = () => {
               <li><a href="/motorcycles">Motorcycles List</a></li>
               <li><a href="/login">Login</a></li>
               <li><a href="/register">Register</a></li>
-              <li><a href="/profile">Profile</a></li>
-
-              <li><a href="/total-users">Total Users</a></li>
             </ul>
           </div>
         </div>
