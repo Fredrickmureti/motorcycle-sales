@@ -84,7 +84,7 @@ const Home = () => {
                     <div className="advanced-filters">
                         <div className='brand-model'>
                         <label>Brand & Model:</label>
-                        <select className='brand-container' name="brand" onChange={(e) => { /* handle brand change */ }}>
+                        <select className='brand-container brand-container1' name="brand" onChange={(e) => { /* handle brand change */ }}>
                             <option value="">Select Brand</option>
                             <option value="Kawasaki">Kawasaki</option>
                             <option value="BMW">BMW</option>
