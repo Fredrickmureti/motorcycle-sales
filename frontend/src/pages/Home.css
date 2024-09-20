@@ -212,3 +212,31 @@
   font-size: 16px;
   margin-top: 5px;
 }
+
+.year-of-manufacture {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-currency {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media screen and (max-width:744px ) {
+  .year-of-manufacture {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-currency {
+    display: flex;
+    flex-direction: column;
+  }
+  
+}

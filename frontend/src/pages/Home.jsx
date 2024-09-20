@@ -68,6 +68,8 @@ const Home = () => {
                             <option value="Kawasaki">Kawasaki</option>
                             <option value="BMW">BMW</option>
                             <option value="Honda">Honda</option>
+                            <option value="Honda">Boxer</option>
+                            <option value="Honda">Sky Go</option>
                             {/* Add more options */}
                         </select>
                         <select name="model" onChange={(e) => { /* handle model change */ }}>

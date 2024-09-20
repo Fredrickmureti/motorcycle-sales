@@ -191,3 +191,11 @@ nav {
   right: 0;
   margin: 19px;
 }
+
+.moon-sun {
+  position: absolute;
+  right: 0;
+
+  margin-right: 80px;
+  margin-top: 10px;
+}

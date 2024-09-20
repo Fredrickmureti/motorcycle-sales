@@ -21,7 +21,7 @@ const Navbar = () => {
         <nav className={`navbar ${darkMode ? 'dark-mode' : ''}`}>
             <div className="container">
                 {/* Logo linking to the home page */}
-                <Link to="/" className="logo"><img className='logo-image' src='/frontend/public/images/logo.png' /></Link>
+                <Link to="/" className="logo"><img className='logo-image' src='/images/logo.png' /></Link>
                 
                 {/* Navigation links */}
                 <ul className="nav-links">
@@ -77,7 +77,7 @@ const Navbar = () => {
                 </ul>
                 
                 {/* Dark mode toggle button */}
-                <button onClick={toggleDarkMode} className="dark-mode-toggle">
+                <button onClick={toggleDarkMode} className="dark-mode-toggle moon-sun">
                     {/* Icon changes based on darkMode value */}
                     <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
                 </button>
