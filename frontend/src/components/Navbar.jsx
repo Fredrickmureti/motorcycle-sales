@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faMotorcycle, faUser, faSignInAlt, faUserPlus, faSignOutAlt, faUserShield, faUsers, faSun, faMoon, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import './navbar.css';
 
 // Navbar component
 const Navbar = () => {
@@ -14,7 +15,7 @@ const Navbar = () => {
         <nav className={`navbar ${darkMode ? 'dark-mode' : ''}`}>
             <div className="container">
                 {/* Logo linking to the home page */}
-                <Link to="/" className="logo">Motorcycle Sales</Link>
+                <Link to="/" className="logo"><img className='logo-image' src='/images/BIKE_LOGO.png' /></Link>
                 
                 {/* Navigation links */}
                 <ul className="nav-links">

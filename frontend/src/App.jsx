@@ -51,7 +51,7 @@ const AppContent = () => {
                 </Routes>
             </div>
             <Footer />
-            <Chat />
+            
             <ToastContainer /> {/* Add ToastContainer here */}
         </div>
     );

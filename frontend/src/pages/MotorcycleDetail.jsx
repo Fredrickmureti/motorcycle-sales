@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchMotorcyclesById } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import Spinner from './spiner';
 
 const MotorcycleDetail = () => {
     const { id } = useParams();
@@ -24,7 +25,9 @@ const MotorcycleDetail = () => {
         getMotorcycle();
     }, [id]);
 
-    if (!motorcycle) return <div>Loading...</div>;
+    if (!motorcycle) return <div>
+        <Spinner/>
+    </div>;
 
     const shareUrl = `https://backend-api-pi-black.vercel.app/motorcycles/${id}`;
 
