@@ -1,0 +1,159 @@
+/* styles.css */
+
+/* Basic Tailwind styles for the component */
+.bg-background {
+  @apply bg-white;
+}
+
+.text-primary-foreground {
+  @apply text-black;
+}
+
+.shadow-lg {
+  @apply shadow-lg;
+}
+
+.rounded-lg {
+  @apply rounded-lg;
+}
+
+.mb-8 {
+  @apply mb-8;
+}
+
+.relative {
+  @apply relative;
+}
+
+.overflow-hidden {
+  @apply overflow-hidden;
+}
+
+.w-full {
+  @apply w-full;
+}
+
+.h-auto {
+  @apply h-auto;
+}
+
+.flex {
+  @apply flex;
+}
+
+.justify-center {
+  @apply justify-center;
+}
+
+.m-1 {
+  @apply m-1;
+}
+
+.cursor-pointer {
+  @apply cursor-pointer;
+}
+
+.border-2 {
+  @apply border-2;
+}
+
+.border-primary {
+  @apply border-blue-500;
+}
+
+.border-transparent {
+  @apply border-transparent;
+}
+
+.max-w-screen-lg {
+  @apply max-w-screen-lg;
+}
+
+.p-6 {
+  @apply p-6;
+}
+
+.text-2xl {
+  @apply text-2xl;
+}
+
+.font-bold {
+  @apply font-bold;
+}
+
+.mt-4 {
+  @apply mt-4;
+}
+
+.px-4 {
+  @apply px-4;
+}
+
+.py-2 {
+  @apply py-2;
+}
+
+.rounded-md {
+  @apply rounded-md;
+}
+
+.bg-primary {
+  @apply bg-yellow-500;
+}
+
+.text-primary-foreground {
+  @apply text-black;
+}
+
+.hover\:bg-primary\/80:hover {
+  @apply bg-yellow-400;
+}
+
+.space-x-4 {
+  @apply space-x-4;
+}
+
+.text-xl {
+  @apply text-xl;
+}
+
+.detail-card>p {
+  position: relative;
+  padding-bottom: 15px;
+  /* Adds some space for the line */
+  margin-bottom: 15px;
+  /* Adds space between the line and the next element */
+}
+
+.detail-card>p::after {
+  content: '';
+  display: block;
+  width: 100%;
+  /* Makes the line the full width of the paragraph */
+  height: 1px;
+  /* Thickness of the line */
+  background: #000;
+  /* Color of the line */
+  position: absolute;
+  bottom: 0;
+  /* Positions the line at the bottom of the paragraph */
+  left: 0;
+}
+
+
+.enquire {
+  margin-left: 2px;
+}
+
+.whatsup {
+  color: green;
+}
+
+.facebook {
+  color: blue;
+}
+
+.twitter {
+  color: blue;
+}
+

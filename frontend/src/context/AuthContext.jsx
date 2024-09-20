@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../pages/spiner';
 
 const API_URL = 'https://backend-api-pi-black.vercel.app'; // Ensure this is the correct URL
 const AuthContext = createContext();
@@ -79,7 +80,9 @@ export const AuthProvider = ({ children }) => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>
+            <Spinner/>
+        </div>;
     }
 
     return (

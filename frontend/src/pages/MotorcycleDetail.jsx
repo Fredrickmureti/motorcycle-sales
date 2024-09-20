@@ -4,12 +4,15 @@ import { fetchMotorcyclesById } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Spinner from './spiner';
+import './styles.css';
+import { useAuth } from '../context/AuthContext';
 
 const MotorcycleDetail = () => {
     const { id } = useParams();
     const [motorcycle, setMotorcycle] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const { darkMode } = useAuth(); // Get the darkMode state from AuthContext
     
     // Fetch motorcycle from the database
     useEffect(() => {
@@ -44,7 +47,10 @@ const MotorcycleDetail = () => {
     const shareUrl = `https://backend-api-pi-black.vercel.app/motorcycles/${id}`;
 
     return (
-        <div className="bg-background text-primary-foreground min-h-screen flex flex-col items-center justify-center p-4">
+        <div 
+            className={`bg-background text-primary-foreground min-h-screen flex flex-col items-center justify-center p-4 bike-card ${darkMode ? 'dark' : ''}`}
+            style={darkMode ? { backgroundColor: '#00000000', color: 'white' } : {}}
+        >
             {/* Main image slider */}
             <div className="w-full max-w-screen-lg rounded-lg overflow-hidden shadow-lg mb-8 relative">
                 {selectedImage && <img src={selectedImage} alt="Motorcycle" className="w-full h-auto" />}
@@ -66,7 +72,10 @@ const MotorcycleDetail = () => {
                 ))}
             </div>
 
-            <div className="w-full max-w-screen-lg bg-card text-card-foreground rounded-lg shadow-lg p-6">
+            <div 
+                className={`w-full max-w-screen-lg bg-card text-card-foreground rounded-lg shadow-lg p-6 detail-card ${darkMode ? 'dark' : ''}`}
+                style={darkMode ? { backgroundColor: '#00000000', color: 'white' } : {}}
+            >
                 <h2 className="text-2xl font-bold mb-4">{motorcycle.brand} {motorcycle.model}</h2>
                 <p><strong>Year:</strong> {motorcycle.year}</p>
                 <p><strong>Condition:</strong> {motorcycle.condition}</p>
@@ -88,25 +97,25 @@ const MotorcycleDetail = () => {
                     Contact Seller
                 </button>
                 <button 
-                    className="bg-primary text-primary-foreground hover:bg-primary/80 mt-4 px-4 py-2 rounded-md ml-4"
+                    className="bg-primary text-primary-foreground hover:bg-primary/80 mt-4 px-4 py-2 rounded-md ml-4 enquire"
                     onClick={() => window.location.href = `https://wa.me/${motorcycle.sellerContact}`}
                 >
                     Enquire Via WhatsApp
                 </button>
                 
-                <div className="mt-4 flex space-x-4">
-                    <a href={`https://api.whatsapp.com/send?text=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                <div className="mt-4 flex space-x-4 line">
+                    <a className='whatsup' href={`https://api.whatsapp.com/send?text=${shareUrl}`} target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faWhatsapp} size="2x" />
                     </a>
-                    <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                    <a className='facebook' href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faFacebook} size="2x" />
                     </a>
-                    <a href={`https://twitter.com/intent/tweet?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                    <a className='twitter' href={`https://twitter.com/intent/tweet?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faTwitter} size="2x" />
                     </a>
                 </div>
                 
-                <div className="mt-4">
+                <div className="mt-4 line">
                     <h3 className="text-xl font-bold">Condition Score</h3>
                     <div className="stars">
                         {Array.from({ length: Math.floor(motorcycle.conditionScore) }, (_, i) => (

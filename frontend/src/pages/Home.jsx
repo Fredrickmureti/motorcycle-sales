@@ -4,6 +4,7 @@ import HERO from '../assets/HERO.jpg';
 import { fetchMotorcycles } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faMotorcycle, faPhone, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import './Home.css';
 
 const Home = () => {
     const navigate = useNavigate();
