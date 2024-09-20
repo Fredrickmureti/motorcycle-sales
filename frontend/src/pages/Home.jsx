@@ -18,7 +18,9 @@ const Home = () => {
     const handleSearch = async () => {
         try {
             const motorcycles = await fetchMotorcycles();
-            const filtered = motorcycles.filter(motorcycle => motorcycle.model.toLowerCase().includes(searchTerm.toLowerCase()));
+            const filtered = motorcycles.filter(motorcycle =>
+                motorcycle.model.toLowerCase().includes(searchTerm.toLowerCase())
+            );
             setFilteredMotorcycles(filtered);
             navigate('/motorcycles', { state: { filteredMotorcycles: filtered } });
         } catch (err) {
@@ -34,7 +36,9 @@ const Home = () => {
         <div>
             <div className="hero-section">
                 <h1 className="graffiti-text">The Safest Way to Buy Motorcycle in Kenya</h1>
-                <button className="scroll-down" onClick={handleScroll}>Scroll Down</button>
+                <button className="scroll-down" onClick={handleScroll}>
+                    Scroll Down
+                </button>
                 <img src={HERO} alt="Hero Image" className="hero-image" />
             </div>
             <div id="main-content">
@@ -48,13 +52,29 @@ const Home = () => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Search for motorcycles..."
                         />
-                        <button onClick={handleSearch}><FontAwesomeIcon icon={faSearch} /> Search</button>
+                        <button onClick={handleSearch}>
+                            <FontAwesomeIcon icon={faSearch} /> Search
+                        </button>
                     </div>
                     <div className="budget-filters">
-                        <button onClick={() => setFilteredMotorcycles(filteredMotorcycles.filter(motorcycle => motorcycle.price <= 70000))}>
+                        <button
+                            onClick={() =>
+                                setFilteredMotorcycles(
+                                    filteredMotorcycles.filter(motorcycle => motorcycle.price <= 70000)
+                                )
+                            }
+                        >
                             0 to 70k
                         </button>
-                        <button onClick={() => setFilteredMotorcycles(filteredMotorcycles.filter(motorcycle => motorcycle.price > 70000 && motorcycle.price <= 150000))}>
+                        <button
+                            onClick={() =>
+                                setFilteredMotorcycles(
+                                    filteredMotorcycles.filter(
+                                        motorcycle => motorcycle.price > 70000 && motorcycle.price <= 150000
+                                    )
+                                )
+                            }
+                        >
                             70k to 150k
                         </button>
                     </div>
@@ -62,8 +82,9 @@ const Home = () => {
                 <div className="advanced-search">
                     <h3>Click here for advanced search</h3>
                     <div className="advanced-filters">
+                        <div className='brand-model'>
                         <label>Brand & Model:</label>
-                        <select name="brand" onChange={(e) => { /* handle brand change */ }}>
+                        <select className='brand-container' name="brand" onChange={(e) => { /* handle brand change */ }}>
                             <option value="">Select Brand</option>
                             <option value="Kawasaki">Kawasaki</option>
                             <option value="BMW">BMW</option>
@@ -72,41 +93,55 @@ const Home = () => {
                             <option value="Honda">Sky Go</option>
                             {/* Add more options */}
                         </select>
-                        <select name="model" onChange={(e) => { /* handle model change */ }}>
+                        <select className='brand-container' name="model" onChange={(e) => { /* handle model change */ }}>
                             <option value="">Select Model</option>
                             {/* Populate based on selected brand */}
                         </select>
-                        <div className="year-of-manufacture">
-                            <label>Year of Manufacture:</label>
-                            <input
-                                type="number"
-                                placeholder="Min YOM"
-                                value={minYOM}
-                                onChange={(e) => setMinYOM(e.target.value)}
-                            />
-                            <input
-                                type="number"
-                                placeholder="Max YOM"
-                                value={maxYOM}
-                                onChange={(e) => setMaxYOM(e.target.value)}
-                            />
                         </div>
-                        <div className="price-currency">
-                            <label>Price & Currency:</label>
-                            <input
-                                type="number"
-                                placeholder="Min Price"
-                                value={minPrice}
-                                onChange={(e) => setMinPrice(e.target.value)}
-                            />
-                            <input
-                                type="number"
-                                placeholder="Max Price"
-                                value={maxPrice}
-                                onChange={(e) => setMaxPrice(e.target.value)}
-                            />
+                        <div className="filter-container">
+                            <div className="year-of-manufacture">
+                                <label>
+                                    Year of Manufacture:
+                                    <input
+                                        type="number"
+                                        placeholder="Min YOM"
+                                        value={minYOM}
+                                        onChange={(e) => setMinYOM(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <input
+                                        type="number"
+                                        placeholder="Max YOM"
+                                        value={maxYOM}
+                                        onChange={(e) => setMaxYOM(e.target.value)}
+                                    />
+                                </label>
+                            </div>
+                            <div className="price-currency">
+                                <label>
+                                    Price & Currency:
+                                    <input
+                                        type="number"
+                                        placeholder="Min Price"
+                                        value={minPrice}
+                                        onChange={(e) => setMinPrice(e.target.value)}
+                                        className='min-price'
+                                    />
+                                </label>
+                                <label>
+                                    <input
+                                        type="number"
+                                        placeholder="Max Price"
+                                        value={maxPrice}
+                                        onChange={(e) => setMaxPrice(e.target.value)}
+                                    />
+                                </label>
+                            </div>
                         </div>
-                        <button onClick={handleSearch}><FontAwesomeIcon icon={faSearch} /> Search</button>
+                        <button onClick={handleSearch}>
+                            <FontAwesomeIcon icon={faSearch} /> Search
+                        </button>
                     </div>
                 </div>
                 <div className="owning-motorcycle">

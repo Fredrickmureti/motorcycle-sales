@@ -220,6 +220,17 @@
   justify-content: center;
 }
 
+.year-of-manufacture>label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.price-currency>label>.min-price {
+  margin-left: 28px;
+}
+
 .price-currency {
   display: flex;
   gap: 10px;
@@ -228,7 +239,7 @@
 }
 
 
-@media screen and (max-width:744px ) {
+@media screen and (max-width:744px) {
   .year-of-manufacture {
     display: flex;
     flex-direction: column;
@@ -238,5 +249,75 @@
     display: flex;
     flex-direction: column;
   }
-  
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container>.year-of-manufacture {
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
+
+
+.brand-model {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.brand-model>.brand-container {
+  margin-left: 35px;
+}
+
+@media screen and (max-width: 869px) {
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+
+  .year-of-manufacture,
+  .price-currency {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .year-of-manufacture label,
+  .price-currency label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+
+  .year-of-manufacture input,
+  .price-currency input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .price-currency>label>.min-price {
+    margin-left: 0px;
+  }
+
+  .brand-model {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-model>.brand-container {
+    width: 240px;
+    margin-right: 35px;
+  }
+
 }
