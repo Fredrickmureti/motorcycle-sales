@@ -5,6 +5,7 @@ import { fetchMotorcycles } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faMotorcycle, faPhone, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
+import Component from './Card';
 
 const Home = () => {
     const navigate = useNavigate();

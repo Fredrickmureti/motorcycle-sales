@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchMotorcycles, deleteMotorcycle } from '../services/api';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Component from './Card'; // Ensure this path is correct
 
 const MotorcyclesList = () => {
     const { user } = useAuth();
@@ -70,22 +71,14 @@ const MotorcyclesList = () => {
             </div>
             <div className="motorcycles-list">
                 {filteredMotorcycles.map((motorcycle) => (
-                    <div key={motorcycle._id} className="motorcycle-box" onClick={() => navigate(`/motorcycles/${motorcycle._id}`)}>
-                        {motorcycle.images && motorcycle.images.length > 0 && (
-                            <img src={motorcycle.images[0]} alt={motorcycle.model} className="main-image" />
-                        )}
-                        <h2>{motorcycle.brand} {motorcycle.model}</h2>
-                        <p>Price: ${motorcycle.price}</p>
-                        <p>Category: {motorcycle.category}</p>
-                        {user?.role === 'admin' && (
-                            <div className="admin-buttons">
-                                <Link to={`/edit-motorcycle/${motorcycle._id}`} onClick={(e) => e.stopPropagation()}>
-                                    <button className="edit-button">Edit</button>
-                                </Link>
-                                <button className="delete-button" onClick={(e) => { e.stopPropagation(); handleDelete(motorcycle._id); }}>Delete</button>
-                            </div>
-                        )}
-                    </div>
+                    <Component 
+                        key={motorcycle._id} 
+                        motorcycle={motorcycle} 
+                        onDetailClick={() => navigate(`/motorcycles/${motorcycle._id}`)} 
+                        onEditClick={() => navigate(`/edit-motorcycle/${motorcycle._id}`)} 
+                        onDeleteClick={handleDelete} 
+                        isAdmin={user?.role === 'admin'}
+                    />
                 ))}
             </div>
         </div>

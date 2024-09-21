@@ -322,3 +322,36 @@
   }
 
 }
+
+
+/* Flex container for the cards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows the cards to wrap onto the next line */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Centers the cards horizontally */
+  max-width: 1200px; /* Set a max width for the container */
+  margin: 0 auto; /* Centers the container itself */
+  padding: 0 10px; /* Adds some horizontal padding to prevent cards from touching edges */
+}
+
+/* Card styles */
+.card {
+  flex: 1 1 calc(33.33% - 20px); /* Allows three cards per row with gaps */
+  max-width: 400px; /* Maximum width per card */
+  box-sizing: border-box; /* Includes padding and border in width/height */
+}
+
+/* Media Query for Larger Screens */
+@media (min-width: 1200px) {
+  .card {
+    flex: 1 1 calc(25% - 20px); /* Four cards per row on larger screens */
+  }
+}
+
+
+.motor-card {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
