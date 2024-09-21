@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Card, Button, Badge, Image } from 'antd';
 import { ArrowRightOutlined, InfoCircleOutlined, DashboardOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import './Card.css';
 
 const { Meta } = Card;
 
@@ -81,7 +82,7 @@ export default function Component({
             Engine: {motorcycle.engine}
           </p>
           <p>
-            {motorcycle.longDescription || 'The XR-750 combines cutting-edge technology with sleek design, offering unparalleled performance for both track and street riding.'}
+            {motorcycle.description || 'The XR-750 combines cutting-edge technology with sleek design, offering unparalleled performance for both track and street riding.'}
           </p>
         </div>
       </CardContent>

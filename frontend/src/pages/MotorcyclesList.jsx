@@ -3,6 +3,7 @@ import { fetchMotorcycles, deleteMotorcycle } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Component from './Card'; // Ensure this path is correct
+import './MotorcycleLits.css';
 
 const MotorcyclesList = () => {
     const { user } = useAuth();

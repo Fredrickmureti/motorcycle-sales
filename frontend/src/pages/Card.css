@@ -1,0 +1,25 @@
+.admin-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  gap: 20px;
+}
+
+.edit-button {
+  color: white;
+  border: none;
+  padding: 3px 15px;
+  background-color: rgba(0, 0, 255, 0.651);
+  border-radius: 5px;
+
+}
+
+.delete-button {
+  color: white;
+  border: none;
+  padding: 3px 15px;
+  background-color: rgba(255, 0, 0, 0.658);
+  border-radius: 5px;
+
+}
