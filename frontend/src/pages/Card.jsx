@@ -9,7 +9,8 @@ import './Card.css';
 const { Meta } = Card;
 
 const StyledCard = styled(Card)`
-  max-width: 800px;
+  width: 100%;
+  max-width: 600px;
   margin: auto;
   overflow: hidden;
   cursor: pointer;
@@ -58,7 +59,7 @@ export default function Component({
   isAdmin 
 }) {
   return (
-    <StyledCard onClick={onDetailClick}>
+    <StyledCard onClick={onDetailClick} className='styled-card'>
       <div style={{ position: 'relative' }}>
         <StyledImage
           alt={motorcycle.model}

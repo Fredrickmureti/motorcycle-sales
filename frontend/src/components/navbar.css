@@ -2,6 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 50px;
+}
+
+
+@media screen and (max-width: 530px) {
+  .logo {
+    margin-right: 100px;
+  }
+
 }
 
 
@@ -199,4 +208,3 @@ nav {
   margin-right: 80px;
   margin-top: 10px;
 }
-

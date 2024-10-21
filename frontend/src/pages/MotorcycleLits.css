@@ -2,16 +2,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 
 .motorcycles-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-@media screen and (max-width: 1024px) {
-  .motorcycles-list-container {}
-
+  margin-left: 40px;
+  padding: 10px;
 }
