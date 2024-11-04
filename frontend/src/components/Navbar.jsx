@@ -21,7 +21,7 @@ const Navbar = () => {
         <nav className={`navbar ${darkMode ? 'dark-mode' : ''}`}>
             <div className="container">
                 {/* Logo linking to the home page */}
-                <Link to="/" className="logo"><img className='logo-image' src='../../public/images/logo.png'/></Link>
+                <Link to="/" className="logo"><img className='logo-image' src='/images/logo.png'/></Link>
                 
                 {/* Navigation links */}
                 <ul className="nav-links">

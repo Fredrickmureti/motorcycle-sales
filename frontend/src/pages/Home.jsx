@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faMotorcycle, faPhone, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
 import Component from './Card';
+import Card from '../components/ExampleCard';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -143,6 +144,7 @@ const Home = () => {
                         <button onClick={handleSearch}>
                             <FontAwesomeIcon icon={faSearch} /> Search
                         </button>
+                        
                     </div>
                 </div>
                 <div className="owning-motorcycle">

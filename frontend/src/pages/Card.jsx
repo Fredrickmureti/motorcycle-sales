@@ -89,7 +89,7 @@ export default function Component({
       </CardContent>
       <CardFooter>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Price>${motorcycle.price}</Price>
+          <Price>kes{motorcycle.price}</Price>
           <Button type="primary" icon={<ArrowRightOutlined />} size="large">
             Compare
           </Button>

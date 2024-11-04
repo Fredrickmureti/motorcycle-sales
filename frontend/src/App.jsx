@@ -19,6 +19,7 @@ import UnreadMessages from '../src/pages/UnreadMessages';
 import Chat from '../src/components/Chat';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactCard from './components/ExampleCard';
 
 const AppContent = () => {
     const { darkMode } = useAuth();
@@ -50,6 +51,9 @@ const AppContent = () => {
                     <Route path="/admin/unread-messages" element={<PrivateRoute><UnreadMessages /></PrivateRoute>} />
                 </Routes>
             </div>
+            <>
+              <ReactCard/>
+            </>
             <Footer />
             
             <ToastContainer /> {/* Add ToastContainer here */}
