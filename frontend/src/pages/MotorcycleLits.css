@@ -1,11 +1,65 @@
-.motorcycles-list-container {
-  position: relative;
-  display: flex;
-  align-items: center;
+.motorcycles-container {
+    padding: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-top: 90px;
 }
 
+.container {
+    margin-bottom: 1000px;
+}
 
-.motorcycles-list {
-  margin-left: 40px;
-  padding: 10px;
+.filters-section {
+    margin-bottom: 24px;
+}
+
+.categories-section {
+    margin-bottom: 100%;
+    margin-top: 70px;
+    background-color: aqua;
+}
+
+.category-button {
+    margin: 4px;
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.category-button:hover {
+    transform: translateY(-2px);
+}
+
+.motorcycles-grid {
+    margin-top: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .motorcycles-container {
+        padding: 16px;
+    }
+
+    .category-button {
+        min-width: auto;
+        padding: 4px 12px;
+    }
+
+    .filters-section {
+        margin-bottom: 16px;
+    }
+
+    .categories-section {
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .motorcycles-container {
+        padding: 12px;
+    }
+
+    .category-button {
+        font-size: 12px;
+        padding: 2px 8px;
+    }
 }

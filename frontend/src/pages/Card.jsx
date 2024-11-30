@@ -14,11 +14,24 @@ const StyledCard = styled(Card)`
   margin: auto;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
 `;
 
 const StyledImage = styled(Image)`
   object-fit: cover;
   height: 300px;
+  width: 100%;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 const StyledBadge = styled(Badge)`
@@ -49,6 +62,19 @@ const CardFooter = styled.div`
 const Price = styled.span`
   font-size: 24px;
   font-weight: bold;
+  color: #1890ff;
+`;
+
+const StyledButton = styled(Button)`
+  &.ant-btn-primary {
+    background: #1890ff;
+    border-radius: 6px;
+    
+    &:hover {
+      background: #40a9ff;
+      transform: translateY(-2px);
+    }
+  }
 `;
 
 export default function Component({ 
@@ -58,6 +84,13 @@ export default function Component({
   onDeleteClick, 
   isAdmin 
 }) {
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-KE', {
+      style: 'currency',
+      currency: 'KES'
+    }).format(price);
+  };
+
   return (
     <StyledCard onClick={onDetailClick} className='styled-card'>
       <div style={{ position: 'relative' }}>
@@ -78,31 +111,44 @@ export default function Component({
       </CardHeader>
       <CardContent>
         <div style={{ marginBottom: 16 }}>
-          <p>
-            <DashboardOutlined style={{ marginRight: 8 }} />
+          <p style={{ fontSize: '16px', color: '#666' }}>
+            <DashboardOutlined style={{ marginRight: 8, color: '#1890ff' }} />
             Engine: {motorcycle.engine}
           </p>
-          <p>
+          <p style={{ fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
             {motorcycle.description || 'The XR-750 combines cutting-edge technology with sleek design, offering unparalleled performance for both track and street riding.'}
           </p>
         </div>
       </CardContent>
       <CardFooter>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Price>kes{motorcycle.price}</Price>
-          <Button type="primary" icon={<ArrowRightOutlined />} size="large">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Price>{formatPrice(motorcycle.price)}</Price>
+          <StyledButton type="primary" icon={<ArrowRightOutlined />} size="large">
             Compare
-          </Button>
+          </StyledButton>
         </div>
-        <Button type="default" block icon={<InfoCircleOutlined />} size="large">
+        <StyledButton type="default" block icon={<InfoCircleOutlined />} size="large">
           View Details
-        </Button>
+        </StyledButton>
         {isAdmin && (
-          <div className="admin-buttons">
-            <Link to={`/edit-motorcycle/${motorcycle._id}`} onClick={(e) => e.stopPropagation()}>
-              <button className="edit-button" onClick={onEditClick}>Edit</button>
+          <div className="admin-buttons" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+            <Link to={`/edit-motorcycle/${motorcycle._id}`} style={{ width: '50%' }} onClick={(e) => e.stopPropagation()}>
+              <StyledButton className="edit-button" block onClick={onEditClick}>
+                Edit
+              </StyledButton>
             </Link>
-            <button className="delete-button" onClick={(e) => { e.stopPropagation(); onDeleteClick(motorcycle._id); }}>Delete</button>
+            <StyledButton 
+              className="delete-button" 
+              danger 
+              block
+              style={{ width: '50%' }}
+              onClick={(e) => { 
+                e.stopPropagation(); 
+                onDeleteClick(motorcycle._id); 
+              }}
+            >
+              Delete
+            </StyledButton>
           </div>
         )}
       </CardFooter>

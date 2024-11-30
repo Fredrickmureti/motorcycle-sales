@@ -1,131 +1,239 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMotorcyclesById } from '../services/api';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Carousel, Button, Rate, Divider, message } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWhatsapp, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { 
+  faWhatsapp, 
+  faFacebook, 
+  faTwitter 
+} from '@fortawesome/free-brands-svg-icons';
+import { 
+  faChevronLeft, 
+  faChevronRight, 
+  faPhone, 
+  faEnvelope, 
+  faShare 
+} from '@fortawesome/free-solid-svg-icons';
 import Spinner from './spiner';
-import './styles.css';
 import { useAuth } from '../context/AuthContext';
+import { fetchMotorcyclesById } from '../services/api';
 
 const MotorcycleDetail = () => {
     const { id } = useParams();
     const [motorcycle, setMotorcycle] = useState(null);
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const { darkMode } = useAuth(); // Get the darkMode state from AuthContext
-    
-    // Fetch motorcycle from the database
+    const [selectedImage, setSelectedImage] = useState(0);
+    const { darkMode } = useAuth();
+    const carouselRef = React.useRef();
+
     useEffect(() => {
         const getMotorcycle = async () => {
             try {
                 const data = await fetchMotorcyclesById(id);
-                setMotorcycle(data.motorcycle); // Update the motorcycle
-                if (data.motorcycle.images && data.motorcycle.images.length > 0) {
-                    setSelectedImage(data.motorcycle.images[0]);
-                }
+                setMotorcycle(data.motorcycle);
             } catch (err) {
-                console.error('Error fetching motorcycle:', err);
+                message.error('Error fetching motorcycle details');
+                console.error('Error:', err);
             }
         };
         getMotorcycle();
     }, [id]);
 
-    // Auto slide functionality
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (motorcycle && motorcycle.images && motorcycle.images.length > 1) {
-                setCurrentIndex((prevIndex) => (prevIndex + 1) % motorcycle.images.length);
-                setSelectedImage(motorcycle.images[(currentIndex + 1) % motorcycle.images.length]);
-            }
-        }, 3000); // Change image every 3 seconds
-
-        return () => clearInterval(interval);
-    }, [motorcycle, currentIndex]);
-
-    if (!motorcycle) return <div><Spinner /></div>;
+    if (!motorcycle) return <Spinner />;
 
     const shareUrl = `https://backend-api-pi-black.vercel.app/motorcycles/${id}`;
 
+    const handleShare = async (platform) => {
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: `${motorcycle.brand} ${motorcycle.model}`,
+                    text: `Check out this ${motorcycle.year} ${motorcycle.brand} ${motorcycle.model}`,
+                    url: shareUrl
+                });
+            } else {
+                window.open(getSocialShareUrl(platform), '_blank');
+            }
+        } catch (err) {
+            console.error('Error sharing:', err);
+        }
+    };
+
+    const getSocialShareUrl = (platform) => {
+        switch (platform) {
+            case 'whatsapp':
+                return `https://api.whatsapp.com/send?text=${shareUrl}`;
+            case 'facebook':
+                return `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+            case 'twitter':
+                return `https://twitter.com/intent/tweet?url=${shareUrl}`;
+            default:
+                return shareUrl;
+        }
+    };
+
     return (
-        <div 
-            className={`bg-background text-primary-foreground min-h-screen flex flex-col items-center justify-center p-4 bike-card ${darkMode ? 'dark' : ''}`}
-            style={darkMode ? { backgroundColor: '#00000000', color: 'white' } : {}}
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="motorcycle-detail-container"
         >
-            {/* Main image slider */}
-            <div className="w-full max-w-screen-lg rounded-lg overflow-hidden shadow-lg mb-8 relative">
-                {selectedImage && <img src={selectedImage} alt="Motorcycle" className="w-full h-auto" />}
-            </div>
+            <div className="gallery-section">
+                <Carousel
+                    ref={carouselRef}
+                    autoplay
+                    dots={false}
+                    effect="fade"
+                    beforeChange={(_, next) => setSelectedImage(next)}
+                >
+                    {motorcycle.images.map((image, index) => (
+                        <motion.div
+                            key={index}
+                            className="main-image-container"
+                            layoutId={`image-${index}`}
+                        >
+                            <img src={image} alt={`${motorcycle.brand} ${motorcycle.model}`} />
+                        </motion.div>
+                    ))}
+                </Carousel>
 
-            {/* Thumbnail navigation */}
-            <div className="flex justify-center mb-8">
-                {motorcycle.images.map((url, index) => (
-                    <img
-                        key={index}
-                        src={url}
-                        alt={`Angle ${index}`}
-                        className={`w-20 h-20 object-cover m-1 cursor-pointer border-2 ${index === currentIndex ? 'border-primary' : 'border-transparent'}`}
-                        onClick={() => {
-                            setSelectedImage(url);
-                            setCurrentIndex(index);
-                        }}
+                <div className="gallery-navigation">
+                    <Button
+                        className="nav-button prev"
+                        icon={<FontAwesomeIcon icon={faChevronLeft} />}
+                        onClick={() => carouselRef.current.prev()}
                     />
-                ))}
+                    <Button
+                        className="nav-button next"
+                        icon={<FontAwesomeIcon icon={faChevronRight} />}
+                        onClick={() => carouselRef.current.next()}
+                    />
+                </div>
+
+                <div className="thumbnail-strip">
+                    {motorcycle.images.map((image, index) => (
+                        <motion.img
+                            key={index}
+                            src={image}
+                            alt={`Thumbnail ${index + 1}`}
+                            className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
+                            onClick={() => carouselRef.current.goTo(index)}
+                            whileHover={{ scale: 1.1 }}
+                        />
+                    ))}
+                </div>
             </div>
 
-            <div 
-                className={`w-full max-w-screen-lg bg-card text-card-foreground rounded-lg shadow-lg p-6 detail-card ${darkMode ? 'dark' : ''}`}
-                style={darkMode ? { backgroundColor: '#00000000', color: 'white' } : {}}
-            >
-                <h2 className="text-2xl font-bold mb-4">{motorcycle.brand} {motorcycle.model}</h2>
-                <p><strong>Year:</strong> {motorcycle.year}</p>
-                <p><strong>Condition:</strong> {motorcycle.condition}</p>
-                <p><strong>Price:</strong> ${motorcycle.price}</p>
-                <p><strong>Horsepower:</strong> {motorcycle.horsepower} HP</p>
-                <p><strong>Mileage:</strong> {motorcycle.mileage} miles</p>
-                <p><strong>Location:</strong> {motorcycle.location}</p>
-                {motorcycle.description && <p>{motorcycle.description}</p>}
-                {motorcycle.specifications && <p>{motorcycle.specifications}</p>}
-                <p>
-                    <strong>Contact:</strong>
-                    <span className="block">Phone: {motorcycle.sellerContact}</span>
-                    <span className="block">Email: example@example.com</span>
-                </p>
-                <button 
-                    className="bg-primary text-primary-foreground hover:bg-primary/80 mt-4 px-4 py-2 rounded-md"
-                    onClick={() => window.location.href = `tel:${motorcycle.sellerContact}`}
-                >
-                    Contact Seller
-                </button>
-                <button 
-                    className="bg-primary text-primary-foreground hover:bg-primary/80 mt-4 px-4 py-2 rounded-md ml-4 enquire"
-                    onClick={() => window.location.href = `https://wa.me/${motorcycle.sellerContact}`}
-                >
-                    Enquire Via WhatsApp
-                </button>
-                
-                <div className="mt-4 flex space-x-4 line">
-                    <a className='whatsup' href={`https://api.whatsapp.com/send?text=${shareUrl}`} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faWhatsapp} size="2x" />
-                    </a>
-                    <a className='facebook' href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faFacebook} size="2x" />
-                    </a>
-                    <a className='twitter' href={`https://twitter.com/intent/tweet?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faTwitter} size="2x" />
-                    </a>
-                </div>
-                
-                <div className="mt-4 line">
-                    <h3 className="text-xl font-bold">Condition Score</h3>
-                    <div className="stars">
-                        {Array.from({ length: Math.floor(motorcycle.conditionScore) }, (_, i) => (
-                            <span key={i}>⭐</span>
+            <div className="details-section">
+                <div className="main-details">
+                    <motion.h1 
+                        className="motorcycle-title"
+                        initial={{ y: -20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                    >
+                        {motorcycle.brand} {motorcycle.model}
+                    </motion.h1>
+                    
+                    <motion.div 
+                        className="price-tag"
+                        initial={{ x: -20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        ${motorcycle.price.toLocaleString()}
+                    </motion.div>
+
+                    <Divider />
+
+                    <div className="specs-grid">
+                        {[
+                            { label: 'Year', value: motorcycle.year || 'N/A' },
+                            { label: 'Condition', value: motorcycle.condition || 'N/A' },
+                            { label: 'Horsepower', value: motorcycle.horsepower ? `${motorcycle.horsepower} HP` : 'N/A' },
+                            { label: 'Mileage', value: motorcycle.mileage ? `${motorcycle.mileage.toLocaleString()} miles` : 'N/A' },
+                            { label: 'Location', value: motorcycle.location || 'N/A' }
+                        ].map((spec, index) => (
+                            <motion.div
+                                key={spec.label}
+                                className="spec-item"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <div className="spec-label">{spec.label}</div>
+                                <div className="spec-value">{spec.value}</div>
+                            </motion.div>
                         ))}
-                        {motorcycle.conditionScore % 1 !== 0 && <span key="half">⭐️</span>}
                     </div>
                 </div>
+
+                <motion.div 
+                    className="contact-section"
+                    initial={{ x: 20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                >
+                    <Button
+                        type="primary"
+                        icon={<FontAwesomeIcon icon={faPhone} />}
+                        className="contact-button primary-button"
+                        onClick={() => window.location.href = `tel:${motorcycle.sellerContact}`}
+                    >
+                        Call Seller
+                    </Button>
+
+                    <Button
+                        icon={<FontAwesomeIcon icon={faWhatsapp} />}
+                        className="contact-button secondary-button"
+                        onClick={() => window.location.href = `https://wa.me/${motorcycle.sellerContact}`}
+                    >
+                        WhatsApp
+                    </Button>
+
+                    <Button
+                        icon={<FontAwesomeIcon icon={faEnvelope} />}
+                        className="contact-button secondary-button"
+                        onClick={() => window.location.href = `mailto:example@example.com`}
+                    >
+                        Email
+                    </Button>
+
+                    <Divider />
+
+                    <div className="condition-score">
+                        <h3>Condition Score</h3>
+                        <Rate 
+                            disabled 
+                            value={motorcycle.conditionScore} 
+                            allowHalf 
+                        />
+                    </div>
+
+                    <Divider />
+
+                    <div className="social-share">
+                        {['whatsapp', 'facebook', 'twitter'].map((platform) => (
+                            <motion.button
+                                key={platform}
+                                className={`social-button ${platform}`}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => handleShare(platform)}
+                            >
+                                <FontAwesomeIcon 
+                                    icon={
+                                        platform === 'whatsapp' ? faWhatsapp :
+                                        platform === 'facebook' ? faFacebook :
+                                        faTwitter
+                                    }
+                                />
+                            </motion.button>
+                        ))}
+                    </div>
+                </motion.div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

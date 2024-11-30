@@ -1055,3 +1055,287 @@ body.dark-mode {
 .admin-list button:hover {
   background-color: #0056b3;
 }
+
+/* Motorcycle Detail Styles */
+.motorcycle-detail-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--background-color);
+}
+
+/* Image Gallery */
+.gallery-section {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--background-color);
+  box-shadow: 0 4px 6px -1px var(--box-shadow-color);
+}
+
+.main-image-container {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.main-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-navigation {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.nav-button {
+  width: 3rem !important;
+  height: 3rem !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: auto !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px var(--box-shadow-color) !important;
+}
+
+.nav-button:hover {
+  background: white !important;
+  transform: scale(1.1) !important;
+}
+
+.thumbnail-strip {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px var(--box-shadow-color);
+}
+
+.thumbnail {
+  width: 4rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.thumbnail.active {
+  border-color: var(--button-background-color);
+}
+
+/* Details Section */
+.details-section {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.main-details {
+  background: var(--background-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px var(--box-shadow-color);
+}
+
+.motorcycle-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.price-tag {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--button-background-color);
+  margin-bottom: 2rem;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.spec-item {
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.spec-label {
+  font-size: 0.875rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.spec-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Contact Section */
+.contact-section {
+  background: var(--background-color);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px var(--box-shadow-color);
+}
+
+.contact-button {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primary-button {
+  background: var(--button-background-color);
+  color: white;
+}
+
+.primary-button:hover {
+  background: var(--button-background-hover-color);
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  background: transparent;
+  border: 2px solid var(--button-background-color);
+  color: var(--button-background-color);
+}
+
+.secondary-button:hover {
+  background: var(--button-background-color);
+  color: white;
+}
+
+/* Social Share */
+.social-share {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-button {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp { background: var(--whatsapp-color); }
+.facebook { background: var(--facebook-color); }
+.twitter { background: var(--twitter-color); }
+
+.social-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .details-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .motorcycle-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .motorcycle-detail-container {
+    padding: 1rem;
+  }
+  
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .thumbnail {
+    width: 3rem;
+    height: 2rem;
+  }
+  
+  .nav-button {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .social-share {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .motorcycle-title {
+    font-size: 1.5rem;
+  }
+  
+  .price-tag {
+    font-size: 1.5rem;
+  }
+  
+  .contact-button {
+    padding: 0.75rem;
+  }
+
+  .thumbnail-strip {
+    display: none;
+  }
+}
+
+/* Dark mode styles */
+.dark .motorcycle-detail-container {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.dark .nav-button {
+  background: rgba(0, 0, 0, 0.7) !important;
+  color: white !important;
+}
+
+.dark .nav-button:hover {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.dark .thumbnail-strip {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.dark .spec-item {
+  background: rgba(255, 255, 255, 0.05);
+}

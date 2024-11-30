@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import HERO from '../assets/HERO.jpg';
+import { motion } from 'framer-motion';
+import { 
+    Input, Button, Typography, Card, Row, Col, Space 
+} from 'antd';
+import { 
+    SearchOutlined, 
+    CarOutlined, 
+    SafetyCertificateOutlined,
+    DollarOutlined,
+    CheckCircleOutlined
+} from '@ant-design/icons';
 import { fetchMotorcycles } from '../services/api';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faMotorcycle, faPhone, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import HERO from '../assets/HERO.jpg';
 import './Home.css';
-import Component from './Card';
-import Card from '../components/ExampleCard';
+
+const { Title, Paragraph } = Typography;
 
 const Home = () => {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredMotorcycles, setFilteredMotorcycles] = useState([]);
-    const [minYOM, setMinYOM] = useState('');
-    const [maxYOM, setMaxYOM] = useState('');
-    const [minPrice, setMinPrice] = useState('');
-    const [maxPrice, setMaxPrice] = useState('');
 
     const handleSearch = async () => {
         try {
@@ -23,151 +27,97 @@ const Home = () => {
             const filtered = motorcycles.filter(motorcycle =>
                 motorcycle.model.toLowerCase().includes(searchTerm.toLowerCase())
             );
-            setFilteredMotorcycles(filtered);
             navigate('/motorcycles', { state: { filteredMotorcycles: filtered } });
         } catch (err) {
             console.error('Error fetching motorcycles:', err);
         }
     };
 
-    const handleScroll = () => {
-        document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
-    };
-
     return (
-        <div>
-            <div className="hero-section">
-                <h1 className="graffiti-text">The Safest Way to Buy Motorcycle in Kenya</h1>
-                <button className="scroll-down" onClick={handleScroll}>
-                    Scroll Down
-                </button>
-                <img src={HERO} alt="Hero Image" className="hero-image" />
-            </div>
-            <div id="main-content">
-                <div className="search-section">
-                    <h2>Search Vehicle</h2>
-                    <p>Simply write the vehicle name and press the search button (e.g., Kawasaki Ninja).</p>
-                    <div className="search-box">
-                        <input
-                            type="text"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            placeholder="Search for motorcycles..."
-                        />
-                        <button onClick={handleSearch}>
-                            <FontAwesomeIcon icon={faSearch} /> Search
-                        </button>
-                    </div>
-                    <div className="budget-filters">
-                        <button
-                            onClick={() =>
-                                setFilteredMotorcycles(
-                                    filteredMotorcycles.filter(motorcycle => motorcycle.price <= 70000)
-                                )
-                            }
-                        >
-                            0 to 70k
-                        </button>
-                        <button
-                            onClick={() =>
-                                setFilteredMotorcycles(
-                                    filteredMotorcycles.filter(
-                                        motorcycle => motorcycle.price > 70000 && motorcycle.price <= 150000
-                                    )
-                                )
-                            }
-                        >
-                            70k to 150k
-                        </button>
-                    </div>
+        <div className="home-container">
+            {/* Hero Section */}
+            <motion.section 
+                className="hero-section"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <div className="hero-content">
+                    <motion.div 
+                        className="hero-text"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <Title level={1} className="hero-title">
+                            Discover Your Perfect Ride
+                        </Title>
+                        <Paragraph className="hero-subtitle">
+                            Kenya's Most Trusted Motorcycle Marketplace
+                        </Paragraph>
+                        <Space size="large" className="hero-stats">
+                            <motion.div 
+                                className="stat-item"
+                                whileHover={{ scale: 1.1 }}
+                            >
+                                <CarOutlined />
+                                <span>500+ Bikes</span>
+                            </motion.div>
+                            <motion.div 
+                                className="stat-item"
+                                whileHover={{ scale: 1.1 }}
+                            >
+                                <CheckCircleOutlined />
+                                <span>Verified Sellers</span>
+                            </motion.div>
+                            <motion.div 
+                                className="stat-item"
+                                whileHover={{ scale: 1.1 }}
+                            >
+                                <SafetyCertificateOutlined />
+                                <span>Secure Deals</span>
+                            </motion.div>
+                        </Space>
+                    </motion.div>
+                    <motion.div 
+                        className="hero-image-container"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <img src={HERO} alt="Hero" className="hero-image" />
+                    </motion.div>
                 </div>
-                <div className="advanced-search">
-                    <h3>Click here for advanced search</h3>
-                    <div className="advanced-filters">
-                        <div className='brand-model'>
-                        <label>Brand & Model:</label>
-                        <select className='brand-container brand-container1' name="brand" onChange={(e) => { /* handle brand change */ }}>
-                            <option value="">Select Brand</option>
-                            <option value="Kawasaki">Kawasaki</option>
-                            <option value="BMW">BMW</option>
-                            <option value="Honda">Honda</option>
-                            <option value="Honda">Boxer</option>
-                            <option value="Honda">Sky Go</option>
-                            {/* Add more options */}
-                        </select>
-                        <select className='brand-container' name="model" onChange={(e) => { /* handle model change */ }}>
-                            <option value="">Select Model</option>
-                            {/* Populate based on selected brand */}
-                        </select>
-                        </div>
-                        <div className="filter-container">
-                            <div className="year-of-manufacture">
-                                <label>
-                                    Year of Manufacture:
-                                    <input
-                                        type="number"
-                                        placeholder="Min YOM"
-                                        value={minYOM}
-                                        onChange={(e) => setMinYOM(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    <input
-                                        type="number"
-                                        placeholder="Max YOM"
-                                        value={maxYOM}
-                                        onChange={(e) => setMaxYOM(e.target.value)}
-                                    />
-                                </label>
-                            </div>
-                            <div className="price-currency">
-                                <label>
-                                    Price & Currency:
-                                    <input
-                                        type="number"
-                                        placeholder="Min Price"
-                                        value={minPrice}
-                                        onChange={(e) => setMinPrice(e.target.value)}
-                                        className='min-price'
-                                    />
-                                </label>
-                                <label>
-                                    <input
-                                        type="number"
-                                        placeholder="Max Price"
-                                        value={maxPrice}
-                                        onChange={(e) => setMaxPrice(e.target.value)}
-                                    />
-                                </label>
-                            </div>
-                        </div>
-                        <button onClick={handleSearch}>
-                            <FontAwesomeIcon icon={faSearch} /> Search
-                        </button>
-                        
-                    </div>
-                </div>
-                <div className="owning-motorcycle">
-                    <h2>Owning a Motorcycle is as simple as One, Two, Three</h2>
-                    <div className="steps">
-                        <div className="step">
-                            <FontAwesomeIcon icon={faMotorcycle} size="3x" />
-                            <h3>One</h3>
-                            <p>Select Motorcycle</p>
-                        </div>
-                        <div className="step">
-                            <FontAwesomeIcon icon={faPhone} size="3x" />
-                            <h3>Two</h3>
-                            <p>Enquire</p>
-                        </div>
-                        <div className="step">
-                            <FontAwesomeIcon icon={faCreditCard} size="3x" />
-                            <h3>Three</h3>
-                            <p>Pay</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </motion.section>
+
+            {/* Search Section */}
+            <motion.section 
+                className="search-section"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+            >
+                <Card className="search-card">
+                    <Title level={2}>Search for Your Motorcycle</Title>
+                    <Input
+                        size="large"
+                        placeholder="Search for motorcycles..."
+                        prefix={<SearchOutlined />}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onPressEnter={handleSearch}
+                    />
+                    <Button 
+                        type="primary" 
+                        size="large" 
+                        icon={<SearchOutlined />} 
+                        onClick={handleSearch}
+                        style={{ marginTop: '20px' }}
+                    >
+                        Search
+                    </Button>
+                </Card>
+            </motion.section>
         </div>
     );
 };

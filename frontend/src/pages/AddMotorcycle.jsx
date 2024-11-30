@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { addMotorcycle } from '../services/api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './addMotorcycle.css';
 
 const AddMotorcycle = () => {
     const [formData, setFormData] = useState({

@@ -3,10 +3,11 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { fetchAdmins, fetchTotalUsers } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faUsers, faChartLine, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './adminsDashboard.css';
 
 const AdminDashboard = () => {
     const { user } = useAuth();
@@ -17,6 +18,8 @@ const AdminDashboard = () => {
     const [admins, setAdmins] = useState([]);
     const [totalUsers, setTotalUsers] = useState(0);
     const [onlineUsers, setOnlineUsers] = useState([]);
+    const [pageVisits, setPageVisits] = useState(0);
+    const [signUps, setSignUps] = useState(0);
 
     useEffect(() => {
         if (user?.role === 'admin') {
@@ -39,6 +42,9 @@ const AdminDashboard = () => {
             fetchTotalUsers()
                 .then(data => setTotalUsers(data.totalUsers))
                 .catch(error => console.error('Error fetching total users:', error));
+
+            setPageVisits(1234);
+            setSignUps(56);
         }
     }, [user]);
 
@@ -79,6 +85,23 @@ const AdminDashboard = () => {
     return (
         <div className="admin-dashboard">
             <h2>Admin Dashboard</h2>
+            <div className="metrics">
+                <div className="metric-card">
+                    <FontAwesomeIcon icon={faUsers} />
+                    <h3>Total Users</h3>
+                    <p>{totalUsers}</p>
+                </div>
+                <div className="metric-card">
+                    <FontAwesomeIcon icon={faUserPlus} />
+                    <h3>New Sign-Ups</h3>
+                    <p>{signUps}</p>
+                </div>
+                <div className="metric-card">
+                    <FontAwesomeIcon icon={faChartLine} />
+                    <h3>Page Visits</h3>
+                    <p>{pageVisits}</p>
+                </div>
+            </div>
             <div className="notification-icon">
                 <Link to="/admin/unread-messages">
                     <FontAwesomeIcon icon={faBell} />

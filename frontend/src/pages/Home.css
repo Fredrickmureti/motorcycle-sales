@@ -1,357 +1,122 @@
-/* Hero Section Styles */
+.home-container {
+    padding-top: 70px; /* Add space for fixed navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--background-color);
+    width: 100%; /* Ensure full width usage */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Hero Section */
 .hero-section {
-  text-align: center;
-  padding: 50px 20px;
+    width: 100%;
+    padding: 60px 0; /* Remove side padding to use full width */
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.graffiti-text {
-  font-size: 40px;
-  font-weight: bold;
-  color: #0D47A1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 20px;
 }
 
-.scroll-down {
-  position: absolute;
-  top: auto;
-  /* Position it just above the hero image */
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: var(--button-background-color);
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-  /*making thw button a bit transparent*/
-  opacity: 0.8;
-  margin-top: 10px;
+.hero-text {
+    color: white;
+    z-index: 1;
+    max-width: 800px;
 }
 
+.hero-title {
+    font-size: 3rem !important;
+    color: white !important;
+    margin-bottom: 20px !important;
+    line-height: 1.2 !important;
+}
 
-.scroll-down:hover {
-  background-color: var(--button-background-hover-color);
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.hero-image-container {
+    max-width: 800px;
+    padding: 20px;
 }
 
 .hero-image {
-  margin-top: 30px;
-  width: 100%;
-  max-width: 2000px;
-  border-radius: 8px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
 }
 
-/* Main Content Styles */
-#main-content {
-  padding: 40px 20px;
-}
-
-/* Search Section Styles */
+/* Search Section */
 .search-section {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.search-section h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.search-section p {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.search-box {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.search-box input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  width: 300px;
-}
-
-.search-box button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: var(--button-background-color);
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.search-box button:hover {
-  background-color: var(--button-background-hover-color);
-}
-
-.budget-filters {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.budget-filters button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: var(--button-background-color);
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.budget-filters button:hover {
-  background-color: var(--button-background-hover-color);
-}
-
-/* Advanced Search Styles */
-.advanced-search {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.advanced-search h3 {
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.advanced-filters {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.advanced-filters label {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.advanced-filters select,
-.advanced-filters input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  width: 300px;
-}
-
-.advanced-filters button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: var(--button-background-color);
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.advanced-filters button:hover {
-  background-color: var(--button-background-hover-color);
-}
-
-/* Year of Manufacture Styles */
-.year-of-manufacture {
-  display: flex;
-  gap: 10px;
-}
-
-/* Owning Motorcycle Section Styles */
-.owning-motorcycle {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.owning-motorcycle h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-.steps {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.step {
-  text-align: center;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
-  width: 200px;
-  box-shadow: 0 2px 4px var(--box-shadow-color);
-  transition: transform 0.3s;
-}
-
-.step:hover {
-  transform: scale(1.05);
-}
-
-.step h3 {
-  font-size: 24px;
-  margin-top: 10px;
-}
-
-.step p {
-  font-size: 16px;
-  margin-top: 5px;
-}
-
-.year-of-manufacture {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
-.year-of-manufacture>label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-.price-currency>label>.min-price {
-  margin-left: 28px;
-}
-
-.price-currency {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
-
-@media screen and (max-width:744px) {
-  .year-of-manufacture {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .price-currency {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .filter-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .filter-container>.year-of-manufacture {
-    display: flex;
-    flex-direction: column;
-  }
-
-}
-
-
-
-.brand-model {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.brand-model>.brand-container1 {
-  margin-left: 35px;
-}
-
-@media screen and (max-width: 869px) {
-  .filter-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-
-  .year-of-manufacture,
-  .price-currency {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .year-of-manufacture label,
-  .price-currency label {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     width: 100%;
-  }
-
-
-  .year-of-manufacture input,
-  .price-currency input {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .price-currency>label>.min-price {
-    margin-left: 0px;
-  }
-
-  .brand-model {
+    padding: 40px 0; /* Remove side padding to use full width */
     display: flex;
-    flex-direction: column;
-  }
-
-  .brand-model>.brand-container {
-    width: 240px;
-    margin-left: 10px;
-    margin-right: 35px;
-  }
-
+    justify-content: center;
 }
 
-
-/* Flex container for the cards */
-.card-container {
-  display: flex;
-  flex-wrap: wrap; /* Allows the cards to wrap onto the next line */
-  gap: 20px; /* Space between cards */
-  justify-content: center; /* Centers the cards horizontally */
-  max-width: 1200px; /* Set a max width for the container */
-  margin: 0 auto; /* Centers the container itself */
-  padding: 0 10px; /* Adds some horizontal padding to prevent cards from touching edges */
+.search-card {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
-/* Card styles */
-.card {
-  flex: 1 1 calc(33.33% - 20px); /* Allows three cards per row with gaps */
-  max-width: 400px; /* Maximum width per card */
-  box-sizing: border-box; /* Includes padding and border in width/height */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem !important;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .stat-item {
+        font-size: 1rem;
+    }
 }
 
-/* Media Query for Larger Screens */
-@media (min-width: 1200px) {
-  .card {
-    flex: 1 1 calc(25% - 20px); /* Four cards per row on larger screens */
-  }
-}
+@media (max-width: 480px) {
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-
-.motor-card {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+    .stat-item {
+        justify-content: center;
+    }
 }
